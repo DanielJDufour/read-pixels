@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="./src/read-pixels.js"></script>
+  </head>
+  <body>
+    <script>
+      console.log("%c starting tests", "background: yellow; color: black; padding: 5px 10px");
+
+      let count = 0;
+      function incrementCounter() {
+        count++;
+        console.log("%c test passed", "color: green");
+        if (count === 6) {
+          console.log("%c all tests passed", "background: green");
+        }
+      }
+
+      async function testData(data) {
+        try {
+          const result = await readPixels({ data, debug: true });
+          console.log("result:", result);
+          if (result.height !== 10) throw "wrong height";
+          if (result.width !== 10) throw "wrong height";
+          if (result.pixels.length !== 10 * 10 * 4) throw "wrong pixel length";
+          incrementCounter();
+        } catch (error) {
+          console.error("%c test failed", "background: red; color: white");
+        }
+      }
+
+      testData(fetch("./data/flower.jpg"));
+      testData(fetch("./data/flower.png"));   
+      testData(fetch("./data/flower.jpg").then(r => r.arrayBuffer()));
+      testData(fetch("./data/flower.png").then(r => r.arrayBuffer()));   
+      testData(fetch("./data/flower.jpg").then(r => r.arrayBuffer()).then(ab => new Uint8Array(ab)));
+      testData(fetch("./data/flower.png").then(r => r.arrayBuffer()).then(ab => new Uint8Array(ab))); 
+    </script>
+  </body>
+</html>

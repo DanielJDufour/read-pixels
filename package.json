@@ -1,0 +1,37 @@
+{
+  "name": "read-pixels",
+  "version": "0.0.0",
+  "description": "Super Lightweight Function to Read Pixels in the Browser. Reads Pixels from JPG, PNG, and WebP Files in Multiple Formats, including ArrayBuffer, Data URL, Files, Response, and Typed Array.",
+  "main": "./dist/read-pixels.min.js",
+  "files": [
+    "./dist/read-pixels.min.js",
+    "./dist/read-pixels.min.js.map"
+  ],
+  "scripts": {
+    "build": "mkdirp dist && terser ./src/read-pixels.js -o ./dist/read-pixels.min.js -c -m --source-map",
+    "dev": "live-server --ignore=node_modules"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DanielJDufour/read-pixels.git"
+  },
+  "keywords": [
+    "data",
+    "graphic",
+    "image",
+    "jpg",
+    "png",
+    "pixels"
+  ],
+  "author": "Daniel J. Dufour",
+  "license": "CC0-1.0",
+  "bugs": {
+    "url": "https://github.com/DanielJDufour/read-pixels/issues"
+  },
+  "homepage": "https://github.com/DanielJDufour/read-pixels#readme",
+  "devDependencies": {
+    "live-server": "^1.2.1",
+    "mkdirp": "^1.0.4",
+    "terser": "^5.5.1"
+  }
+}

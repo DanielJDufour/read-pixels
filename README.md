@@ -8,11 +8,28 @@ Reads Pixels from JPG, PNG, and WebP Files in Multiple Formats, including ArrayB
 npm install read-pixels
 ```
 
-# usage in a module
-```js
+# usage
+```javascript
 import readPixels from 'read-pixels';
 
-const response = await fetch("./flower.png");
-const result = await readPixels({ data: response, debug: true });
+// reading array buffer
+const result = await readPixels({
+  data: await fetch("./flower.png").then(r => r.arrayBuffer()),
+  debug: true // set debug to true for more logging
+});
+// result is { height: 100, width: 100, pixels: ClampedUint8Array[....] }
+
+// reading Response
+const result = await readPixels({
+  data: fetch("./flower.png"),
+  debug: true // set debug to true for more logging
+});
+// result is { height: 100, width: 100, pixels: ClampedUint8Array[....] }
+
+// reading data url
+const result = await readPixels({
+  data: "data:image/png;base64,...",
+  debug: true // set debug to true for more logging
+});
 // result is { height: 100, width: 100, pixels: ClampedUint8Array[....] }
 ```
