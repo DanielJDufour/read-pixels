@@ -35,8 +35,8 @@ const readPixels = async ({ data, debug=false }) => {
   canvas.height = height;
   canvas.width = width;
   const context = canvas.getContext('2d');
-  context.drawImage(img, 0, 0, w, h);
-  const imageData = context.getImageData(0, 0, w, h);
+  context.drawImage(img, 0, 0, width, height);
+  const imageData = context.getImageData(0, 0, width, height);
   if (debug) console.log("[read-pixels] imageData:", imageData);
   const { data: pixels } = imageData;
   if (debug) console.log("[read-pixels] pixels:", pixels);
