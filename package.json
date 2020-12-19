@@ -1,6 +1,6 @@
 {
   "name": "read-pixels",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Super Lightweight Function to Read Pixels in the Browser. Reads Pixels from JPG, PNG, and WebP Files in Multiple Formats, including ArrayBuffer, Data URL, Files, Response, and Typed Array.",
   "browser": "./dist/read-pixels.min.js",
   "unpkg": "./dist/read-pixels.min.js",
