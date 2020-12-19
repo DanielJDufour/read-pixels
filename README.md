@@ -3,6 +3,11 @@
 
 Reads Pixels from JPG, PNG, and WebP Files in Multiple Formats, including ArrayBuffer, Data URL, Files, Response, and Typed Array.
 
+# why?
+:zero: Zero Dependencies 
+
+:rocket: Super Lightweight at 1.24 KB File Size
+
 # install
 ```bash
 npm install read-pixels
