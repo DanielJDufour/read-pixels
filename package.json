@@ -5,6 +5,7 @@
   "browser": "./dist/read-pixels.min.js",
   "unpkg": "./dist/read-pixels.min.js",
   "files": [
+    "src/",
     "dist/"
   ],
   "scripts": {
