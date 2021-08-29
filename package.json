@@ -10,7 +10,8 @@
   ],
   "scripts": {
     "build": "mkdirp dist && terser ./src/read-pixels.js -o ./dist/read-pixels.min.js -c -m --source-map",
-    "dev": "live-server --ignore=node_modules"
+    "dev": "live-server --ignore=node_modules",
+    "test": "echo \"run npm dev and navigate to http://localhost:8080\""
   },
   "repository": {
     "type": "git",
