@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <script src="https://unpkg.com/flug"></script>
     <script src="./src/read-pixels.js"></script>
   </head>
   <body>
@@ -29,12 +30,34 @@
         }
       }
 
-      testData(fetch("./data/flower.jpg"));
-      testData(fetch("./data/flower.png"));   
-      testData(fetch("./data/flower.jpg").then(r => r.arrayBuffer()));
-      testData(fetch("./data/flower.png").then(r => r.arrayBuffer()));   
-      testData(fetch("./data/flower.jpg").then(r => r.arrayBuffer()).then(ab => new Uint8Array(ab)));
-      testData(fetch("./data/flower.png").then(r => r.arrayBuffer()).then(ab => new Uint8Array(ab))); 
+      test("url to jpg", () => {
+        testData(fetch("./data/flower.jpg"));
+      });
+      test("url to png", () => {
+        testData(fetch("./data/flower.png"));
+      });
+      test("JPG ArrayBuffer", () => {
+        testData(fetch("./data/flower.jpg").then(r => r.arrayBuffer()));
+      });
+      test("PNG ArrayBuffer", () => {
+        testData(fetch("./data/flower.png").then(r => r.arrayBuffer()));
+      });
+      test("Uint8Array JPG", () => {
+        testData(fetch("./data/flower.jpg").then(r => r.arrayBuffer()).then(ab => new Uint8Array(ab)));
+      });
+      test("Uint8Array PNG", () => {
+        testData(fetch("./data/flower.png").then(r => r.arrayBuffer()).then(ab => new Uint8Array(ab)));
+      });
+
+      test("rejection", async ({ eq }) => {
+        let msg;
+        try {
+          await readPixels({ data: "https://localhost:8080/fake.png", debug: true });
+        } catch (error) {
+          msg = error;
+        }
+        eq(msg, "Image not loaded");
+      })
     </script>
   </body>
 </html>

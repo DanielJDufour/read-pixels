@@ -28,7 +28,7 @@ const readPixels = async ({ data, debug=false }) => {
   } 
 
   const img = await getImage(src);
-  console.log("[read-pixels] img:", img);
+  if (debug) console.log("[read-pixels] img:", img);
 
   const { height, width } = img;
 
