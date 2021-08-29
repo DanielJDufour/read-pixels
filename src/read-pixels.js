@@ -1,6 +1,7 @@
-const getImage = src => new Promise(resolve => {
+const getImage = src => new Promise((resolve, reject) => {
   const img = document.createElement("img");
   img.onload = () => resolve(img);
+  img.onerror = () => reject("Image not loaded");
   img.src = src;
 });
 
