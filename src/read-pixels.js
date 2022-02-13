@@ -57,6 +57,7 @@ const readPixels = async ({ data, debug=false }) => {
   return result;
 }
 
+if (typeof define === 'function' && define.amd) define(function() { return readPixels; });
 if (typeof window !== 'undefined') window.readPixels = readPixels;
 if (typeof module !== 'undefined') module.exports = readPixels;
 if (typeof self !== 'undefined') self.readPixels = readPixels;
