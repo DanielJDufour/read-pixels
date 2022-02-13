@@ -2,6 +2,7 @@
 <html>
   <head>
     <script src="https://unpkg.com/flug"></script>
+    <script src="https://unpkg.com/easy-image-loader"></script>
     <script src="./src/read-pixels.js"></script>
   </head>
   <body>
@@ -57,7 +58,13 @@
           msg = error;
         }
         eq(msg, "Image not loaded");
-      })
+      });
+
+      test("read pixels from cross-origin img", async ({ eq }) => {
+        const img = await loadImage("https://raw.githubusercontent.com/DanielJDufour/read-pixels/main/data/flower.jpg", { crossOrigin: true });
+        console.log({img});
+        testData(img);
+      });
     </script>
   </body>
 </html>

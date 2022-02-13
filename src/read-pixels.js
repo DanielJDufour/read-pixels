@@ -17,17 +17,22 @@ const readPixels = async ({ data, debug=false }) => {
     data = data.buffer;
   }
 
-  let blob, src, tempurl;
-  if (data instanceof ArrayBuffer) {
-    if (typeof Blob !== "undefined") {
-      blob = new Blob([data], { type: "image/png" });
-      src = tempurl = URL.createObjectURL(blob);
+  let blob, src, tempurl, img;
+  if (typeof data === "object" && data.tagName === 'IMG') {
+    img = data;
+  } else {
+    if (data instanceof ArrayBuffer) {
+      if (typeof Blob !== "undefined") {
+        blob = new Blob([data], { type: "image/png" });
+        src = tempurl = URL.createObjectURL(blob);
+      }
+    } else if (typeof data === "string" && data.startsWith("data:")) {
+      src = data;
     }
-  } else if (typeof data === "string" && data.startsWith("data:")) {
-    src = data;
-  } 
 
-  const img = await getImage(src);
+    img = await getImage(src);
+  }
+
   if (debug) console.log("[read-pixels] img:", img);
 
   const { height, width } = img;
